@@ -3,102 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поздравление💫</title>
+    <title>Для моей Диля ❤️</title>
     <style>
         body {
             margin: 0;
             height: 100vh;
-            overflow: hidden;
-            background: #fdf2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow-x: hidden;
+            background: #fff5f7;
             font-family: 'Arial', sans-serif;
-            text-align: center;
+            line-height: 1.8;
+            color: #333;
         }
         
         .container {
-            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
             opacity: 0;
-            animation: fadeIn 2s forwards 0.5s;
+            animation: fadeIn 2s forwards 1s;
         }
         
         h1 {
             color: #ff6b8b;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.8rem;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
         
-        .wish {
-            color: #555;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            max-width: 80%;
-            margin: 0 auto;
+        .section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1.5s forwards;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         @keyframes fadeIn {
             to { opacity: 1; }
         }
         
-        /* Мягкие волны на фоне */
-        .wave {
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Анимация сердечек */
+        .heart {
             position: absolute;
+            font-size: 24px;
+            color: rgba(255, 107, 139, 0.7);
+            animation: fall linear infinite;
+            z-index: -1;
+            user-select: none;
+            pointer-events: none;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+        
+        /* Волны */
+        .wave {
+            position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ff6b8b" opacity=".1"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ff6b8b" opacity=".15"/></svg>');
             background-size: cover;
-            animation: wave 10s linear infinite;
+            animation: wave 12s linear infinite;
+            z-index: -1;
         }
         
-        @keyframes wave {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* Специальное сердечко */
+        .special-heart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 40px;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+            z-index: 100;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Скрытое сообщение */
+        .hidden-message {
+            position: fixed;
+            bottom: 70px;
+            right: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 101;
+        }
+        
+        .special-heart:hover + .hidden-message {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Диля, моя любовь 💖</h1>
-        <div class="wish">
-            <p>С этими двумя годами рядом с тобой я понял, что такое настоящее счастье.</p>
-            <p>Пусть каждый наш день будет наполнен теплом, смехом и такими моментами, от которых сердце замирает.</p>
-            <p>Ты — самое прекрасное, что со мной случилось. ❤️</p>
+        <h1>Диля, моя вселенная ✨</h1>
+
+        <div class="section" style="animation-delay: 1.2s;">
+            <p>Когда я пытаюсь описать тебя одним словом, у меня ничего не получается. Ты — целый мир. Танцовщица, которая превращает любое движение в искусство. Хозяйка, превращающая дом в уютное гнёздышко. Старшая сестра, которая с бесконечным терпением заботится о младших. И моя опора, даже когда я этого не заслуживаю.</p>
+        </div>
+
+        <div class="section" style="animation-delay: 1.8s;">
+            <p>Я до сих пор не понимаю, как ты успеваешь всё: танцы, дом, братья, работа... И при этом находишь силы выслушивать мои переживания, мотивировать меня, прощать мои обиды. Ты — живое доказательство, что ангелы существуют.</p>
+        </div>
+
+        <div class="section" style="animation-delay: 2.4s;">
+            <p>Помнишь наш каток? Тот час, когда ты смеялась над моими падениями, а потом помогала подняться — был самым счастливым в моей жизни. В этом весь ты: даёшь мне право быть неидеальным, но всегда протягиваешь руку, когда я спотыкаюсь.</p>
+        </div>
+
+        <div class="section" style="animation-delay: 3s;">
+            <p>Я не умею красиво поддерживать, как ты. Но я научусь. Я не всегда понимаю, как снять твоё напряжение. Но я найду способ. Обещаю, что однажды стану для тебя таким же надёжным пристанищем, каким ты стала для меня. Ведь ты заслуживаешь человека, который будет решать все твои проблемы... или просто крепко обнимать, когда решения нет.</p>
+        </div>
+
+        <div class="section" style="animation-delay: 3.6s;">
+            <p>Спасибо за каждую инициированную тобой встречу. За каждый придуманный тобой танец. За каждую ночь, когда ты засыпаешь у меня на плече. Я бы отдал за тебя жизнь... но ты научила меня, что гораздо важнее — прожить её вместе.</p>
+        </div>
+        <div class="section" style="animation-delay: 4.2s;">
+            <p>С днём рождения тебя! Я очень и очень тебя люблю💖.</p>
         </div>
     </div>
     
     <div class="wave"></div>
+    
+    <!-- Специальное интерактивное сердечко -->
+    <div class="special-heart">❤️</div>
+    <div class="hidden-message">
+        "Я научусь быть твоей опорой, как ты — моей"
+    </div>
+    
     <script>
-        // Можно добавить едва заметные летающие частицы
-        document.addEventListener('DOMContentLoaded', () => {
-            const colors = ['#ffb6c1', '#ffd3b6', '#d8bfd8'];
-            for (let i = 0; i < 20; i++) {
-                const dot = document.createElement('div');
-                dot.style.position = 'absolute';
-                dot.style.width = '3px';
-                dot.style.height = '3px';
-                dot.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                dot.style.borderRadius = '50%';
-                dot.style.left = Math.random() * 100 + 'vw';
-                dot.style.top = Math.random() * 100 + 'vh';
-                dot.style.opacity = '0.5';
-                dot.style.animation = `float ${Math.random() * 10 + 5}s linear infinite`;
-                document.body.appendChild(dot);
+        // Сердечки
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 8 + 5 + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 15000);
+        }
+        
+        // Запуск анимаций
+        setInterval(createHeart, 500);
+        
+        // Плавное появление секций
+        document.querySelectorAll('.section').forEach((section, index) => {
+            section.style.animationDelay = `${1.2 + index * 0.6}s`;
+        });
+        
+        // Дополнительные эффекты при клике
+        document.addEventListener('click', function(e) {
+            if (e.target.className !== 'special-heart') {
+                const clickHeart = document.createElement('div');
+                clickHeart.innerHTML = '❤️';
+                clickHeart.style.position = 'absolute';
+                clickHeart.style.left = e.clientX + 'px';
+                clickHeart.style.top = e.clientY + 'px';
+                clickHeart.style.fontSize = '30px';
+                clickHeart.style.animation = 'zoomOut 1s forwards';
+                document.body.appendChild(clickHeart);
                 
-                // Анимация движения
-                const keyframes = `
-                    @keyframes float {
-                        0% { transform: translate(0, 0); }
-                        50% { transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px); }
-                        100% { transform: translate(0, 0); }
-                    }
-                `;
-                const style = document.createElement('style');
-                style.innerHTML = keyframes;
-                document.head.appendChild(style);
+                setTimeout(() => {
+                    clickHeart.remove();
+                }, 1000);
             }
         });
     </script>
