@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Для моей любимой❤️</title>
+    <title>Для моей любимой ❤️</title>
     <style>
         body {
             margin: 0;
@@ -53,31 +53,21 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Анимация сердечек */
+        /* Анимация сердечек - исправленная */
         .heart {
             position: fixed;
             font-size: 24px;
             color: rgba(255, 107, 139, 0.7);
-            animation: fall linear infinite;
+            animation: fall linear forwards;
             z-index: 1;
             user-select: none;
             pointer-events: none;
+            top: -50px;
         }
         
         @keyframes fall {
-            0% { 
-                transform: translateY(-10vh) rotate(0deg) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% { 
-                transform: translateY(110vh) rotate(360deg) translateX(20px);
-                opacity: 0;
+            to { 
+                transform: translateY(120vh) rotate(360deg);
             }
         }
         
@@ -128,12 +118,6 @@
         .special-heart:hover + .hidden-message {
             opacity: 1;
         }
-        
-        /* Анимация для кликов */
-        @keyframes zoomOut {
-            from { transform: scale(1); opacity: 1; }
-            to { transform: scale(3); opacity: 0; }
-        }
     </style>
 </head>
 <body>
@@ -174,28 +158,30 @@
     </div>
     
     <script>
-        // Сердечки
+        // Исправленная функция создания сердечек
         function createHeart() {
             const heart = document.createElement('div');
             heart.innerHTML = '❤️';
             heart.className = 'heart';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 8 + 5 + 's';
-            heart.style.opacity = '0';
-            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDuration = (Math.random() * 5 + 3) + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
             document.body.appendChild(heart);
             
+            // Удаляем сердечко после завершения анимации
             setTimeout(() => {
                 heart.remove();
-            }, 15000);
+            }, 10000);
         }
         
-        // Запуск анимаций (больше сердечек)
-        for (let i = 0; i < 15; i++) {
-            createHeart();
-            setTimeout(createHeart, i * 300);
+        // Создаем начальные сердечки
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+                createHeart();
+            }, i * 300);
         }
         
+        // Продолжаем создавать сердечки
         setInterval(createHeart, 800);
         
         // Плавное появление секций
@@ -209,8 +195,8 @@
                 const clickHeart = document.createElement('div');
                 clickHeart.innerHTML = '❤️';
                 clickHeart.style.position = 'fixed';
-                clickHeart.style.left = e.clientX - 15 + 'px';
-                clickHeart.style.top = e.clientY - 15 + 'px';
+                clickHeart.style.left = e.clientX + 'px';
+                clickHeart.style.top = e.clientY + 'px';
                 clickHeart.style.fontSize = '30px';
                 clickHeart.style.animation = 'zoomOut 1s forwards';
                 clickHeart.style.zIndex = '1000';
