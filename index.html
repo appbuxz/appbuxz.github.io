@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Для моей Диля ❤️</title>
+    <title>Для моей любимой❤️</title>
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             overflow-x: hidden;
             background: #fff5f7;
             font-family: 'Arial', sans-serif;
             line-height: 1.8;
             color: #333;
+            position: relative;
         }
         
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 40px 20px 150px;
+            position: relative;
+            z-index: 10;
             opacity: 0;
             animation: fadeIn 2s forwards 1s;
         }
@@ -52,18 +55,30 @@
         
         /* Анимация сердечек */
         .heart {
-            position: absolute;
+            position: fixed;
             font-size: 24px;
             color: rgba(255, 107, 139, 0.7);
             animation: fall linear infinite;
-            z-index: -1;
+            z-index: 1;
             user-select: none;
             pointer-events: none;
         }
         
         @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg); }
-            100% { transform: translateY(110vh) rotate(360deg); }
+            0% { 
+                transform: translateY(-10vh) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% { 
+                transform: translateY(110vh) rotate(360deg) translateX(20px);
+                opacity: 0;
+            }
         }
         
         /* Волны */
@@ -76,7 +91,7 @@
             background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ff6b8b" opacity=".15"/></svg>');
             background-size: cover;
             animation: wave 12s linear infinite;
-            z-index: -1;
+            z-index: 2;
         }
         
         /* Специальное сердечко */
@@ -113,6 +128,12 @@
         .special-heart:hover + .hidden-message {
             opacity: 1;
         }
+        
+        /* Анимация для кликов */
+        @keyframes zoomOut {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(3); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -138,6 +159,7 @@
         <div class="section" style="animation-delay: 3.6s;">
             <p>Спасибо за каждую инициированную тобой встречу. За каждый придуманный тобой танец. За каждую ночь, когда ты засыпаешь у меня на плече. Я бы отдал за тебя жизнь... но ты научила меня, что гораздо важнее — прожить её вместе.</p>
         </div>
+        
         <div class="section" style="animation-delay: 4.2s;">
             <p>С днём рождения тебя! Я очень и очень тебя люблю💖.</p>
         </div>
@@ -159,7 +181,8 @@
             heart.className = 'heart';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = Math.random() * 8 + 5 + 's';
-            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            heart.style.opacity = '0';
+            heart.style.animationDelay = Math.random() * 2 + 's';
             document.body.appendChild(heart);
             
             setTimeout(() => {
@@ -167,8 +190,13 @@
             }, 15000);
         }
         
-        // Запуск анимаций
-        setInterval(createHeart, 500);
+        // Запуск анимаций (больше сердечек)
+        for (let i = 0; i < 15; i++) {
+            createHeart();
+            setTimeout(createHeart, i * 300);
+        }
+        
+        setInterval(createHeart, 800);
         
         // Плавное появление секций
         document.querySelectorAll('.section').forEach((section, index) => {
@@ -180,11 +208,12 @@
             if (e.target.className !== 'special-heart') {
                 const clickHeart = document.createElement('div');
                 clickHeart.innerHTML = '❤️';
-                clickHeart.style.position = 'absolute';
-                clickHeart.style.left = e.clientX + 'px';
-                clickHeart.style.top = e.clientY + 'px';
+                clickHeart.style.position = 'fixed';
+                clickHeart.style.left = e.clientX - 15 + 'px';
+                clickHeart.style.top = e.clientY - 15 + 'px';
                 clickHeart.style.fontSize = '30px';
                 clickHeart.style.animation = 'zoomOut 1s forwards';
+                clickHeart.style.zIndex = '1000';
                 document.body.appendChild(clickHeart);
                 
                 setTimeout(() => {
